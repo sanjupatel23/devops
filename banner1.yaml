@@ -1,0 +1,29 @@
+- name: GATHER INFORMATION FROM ROUTERS
+  hosts: routers
+  connection: network_cli
+  gather_facts: no
+  
+  tasks:
+    - name: GATHER ROUTER FACTS
+      ios_facts:
+      register: device_info
+
+  - name: configure the login banner
+  ios_banner:
+    banner: login
+    text: |
+      this is my login banner
+      that contains a multiline
+      string
+    state: present
+
+  - name: remove the motd banner
+  ios_banner:
+    banner: motd
+    state: absent
+
+  - name: Configure banner from file
+  ios_banner:
+    banner:  motd
+    text: "{{ lookup('file', './config_partial/raw_banner.cfg') }}"
+    state: present
