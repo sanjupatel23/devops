@@ -10,3 +10,5 @@
         banner:  motd
         text: "{{ lookup('file', './banner.txt') }}"
         state: present
+        
+         echo "Good Day...more banner2 !" >> banner.txt
