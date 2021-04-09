@@ -5,8 +5,8 @@
   gather_facts: no
 
   tasks:
-  - name: Configure banner from file
-    ios_banner:
-      banner:  motd
-      text: "{{ lookup('file', './banner.txt') }}"
-      state: present
+    - name: Configure banner from file
+      ios_banner:
+        banner:  motd
+        text: "{{ lookup('file', './banner.txt') }}"
+        state: present
